@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="DDAD_JSON_PATH" default="/data/ddad_train_val/ddad.json"/>
+    <arg name="UPDATE_FREQUENCY" default="8.0"/>
+
+    <node pkg="dgp_visualize" type="dgp_visualize_node.py" name="dgp_visualize_node" output="screen">
+        <param name="DDAD_JSON_PATH" value="$(arg DDAD_JSON_PATH)"/>
+        <param name="UPDATE_FREQUENCY" value="$(arg UPDATE_FREQUENCY)"/>
+    </node>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find dgp_visualize)/rviz/rviz.rviz"/>
+    <node pkg="dgp_visualize" type="gui_controller_node.py" name="gui_controller_node" output="screen" respawn="false" respawn_delay="0">
+
+    </node>
+</launch>
